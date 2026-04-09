@@ -54,6 +54,7 @@ Enter task: Study programming
 ## Project Structure
 
 * `main.py` — main program logic
+* `functions.py` - stores custom functions
 * `tasks.txt` — stores tasks data
 
 ---
