@@ -5,9 +5,9 @@ print("Welcome TO Task Manager\n")
 choices = {1:"Add Task",2:"View Task",3:"Delete Task",4:"Mark Task as Complete",5:"View menu",6:"Exit"}
 
 def display_menu(options):
-    for num in options:
-        print(num,choices[num])
-    print("\n")
+    for num,option in options.items():
+        print(f"({num})",option)
+    print()
 
 def get_choice(question):
     try:
@@ -33,4 +33,5 @@ while True:
     elif choice == 5:
         display_menu(choices)
     elif choice == 6:
-        exit()
+        print("Exiting...")
+        break
