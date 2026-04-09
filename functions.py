@@ -2,16 +2,20 @@ def add_task():
     with open("tasks.txt","a") as f:
         task = input("Enter task title: ")
         description = input("Enter task description: ")
-        f.write(f"{task},{description},Incomplete\n")
+        f.write(f"{task},{description},[Incomplete]\n")
 
 def view_task():
     with open("tasks.txt","r") as f:
        tasks = f.readlines()
-       num = 1
+       num = 0
        for task in tasks:
-            t = task.split(",")
-            print(f"{num} {t[0]}  {t[1]}  {t[2]}",end="")
             num += 1
+            print(num,end=" ")
+            t = task.strip()
+            t = t.split(",")
+            for item in t:
+                print(item,end=" ")
+            print()
 
 def delete_task():
     view_task()
@@ -28,10 +32,7 @@ def mark_complete():
     marking_task = int(input("Enter Completing task number: ")) - 1
     with open("tasks.txt","r+") as f:
         tasks = f.readlines()
-        complete_task = tasks[marking_task]
-        t = complete_task.split(",")
-        t[2] = "complete"
-        complete_task = f"{t[0]},{t[1]},{t[2]}\n"
+        complete_task = tasks[marking_task].replace("[Incomplete]","[Complete]")
         tasks[marking_task] = complete_task
     with open("tasks.txt","w") as f:
         f.writelines(tasks)
