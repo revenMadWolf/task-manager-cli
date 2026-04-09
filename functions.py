@@ -3,8 +3,6 @@ def load_tasks(path="tasks.txt"):
         return f.readlines()
 
 def save_tasks(tasks,path="tasks.txt"):
-    if tasks is None:
-        tasks = []
     with open(path,"w") as f:
         f.writelines(tasks)
 
@@ -18,10 +16,8 @@ def add_task():
 
 def view_task():
     tasks = load_tasks()
-    num = 0
-    for task in tasks:
-        num += 1
-        print(f"({num})",end=" ")
+    for num,task in enumerate(tasks):
+        print(f"({num+1})",end=" ")
         t = task.strip()
         t = t.split(",")
         for item in t:
