@@ -29,7 +29,7 @@ while True:
     elif choice == 3:
         functions.delete_task()
     elif choice == 4:
-        pass
+        functions.mark_complete()
     elif choice == 5:
         display_menu(choices)
     elif choice == 6:
