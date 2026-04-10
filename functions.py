@@ -52,17 +52,17 @@ def mark_complete():
     save_tasks(tasks)
     print("Task Completed!")
 
-def get_input_num(tasks, question):
+def get_input_num(selections, question):
     entered_num = input(question)
     try:
         entered_num = int(entered_num)
     except ValueError:
         print("Invalid input!")
-        return get_input_num(tasks, question)
+        return get_input_num(selections, question)
 
-    if entered_num > len(tasks) or entered_num <= 0:
+    if entered_num > len(selections) or entered_num <= 0:
         print("Invalid input!")
-        return get_input_num(tasks, question)
+        return get_input_num(selections, question)
     else:
         return entered_num - 1
 
