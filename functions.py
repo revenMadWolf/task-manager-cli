@@ -29,10 +29,8 @@ def view_task():
     if len(tasks) == 0:
         print("No Tasks available!")
         return
-    for num,task in enumerate(tasks):
-        print(f"\n[{num + 1}] {task['title']}")
-        print(f"    Description: {task['description']}")
-        print(f"    Status: {task['status']}")
+    display_task(tasks)
+
 
 def delete_task():
     tasks = load_tasks()
@@ -62,3 +60,24 @@ def get_task_num(tasks,question):
     else:
         return entered_num - 1
 
+def search_from_keyword():
+    search_result = []
+    search_word = input("Enter keyword: ").lower()
+    tasks = load_tasks()
+    for task in tasks:
+        for key,item in task.items():
+            if key == "status":
+                continue
+            if search_word in item.lower():
+                search_result.append(task)
+                break
+    if len(search_result) > 0:
+        display_task(search_result)
+    else:
+        print("No tasks available!")
+
+def display_task(tasks):
+    for num,task in enumerate(tasks):
+        print(f"\n[{num + 1}] {task['title']}")
+        print(f"    Description: {task['description']}")
+        print(f"    Status: {task['status']}")

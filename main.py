@@ -2,7 +2,7 @@ import functions
 
 print("Welcome TO Task Manager\n")
 
-choices = {1:"Add Task",2:"View Task",3:"Delete Task",4:"Mark Task as Complete",5:"View menu",6:"Exit"}
+choices = {1:"Add Task",2:"View Tasks",3:"Delete Task",4:"Mark Task as Complete",5:"Search",6:"View menu",7:"Exit"}
 
 def display_menu(options):
     for num,option in options.items():
@@ -32,8 +32,10 @@ while True:
     elif choice == 4:
         functions.mark_complete()
     elif choice == 5:
-        display_menu(choices)
+        functions.search_from_keyword()
     elif choice == 6:
+        display_menu(choices)
+    elif choice == 7:
         print("Exiting...")
         break
     else:
