@@ -13,13 +13,14 @@ def get_choice(question):
     try:
         choice_num = int(input(question))
     except ValueError:
-        print("Invalid Input")
+        print("Invalid Input!")
         return get_choice(question)
     return choice_num
 
 display_menu(choices)
 
 while True:
+    print()
     choice = get_choice("Select an option: ")
 
     if choice == 1:
@@ -35,3 +36,5 @@ while True:
     elif choice == 6:
         print("Exiting...")
         break
+    else:
+        print("Invalid Input!")
