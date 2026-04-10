@@ -26,24 +26,39 @@ def add_task():
 
 def view_task():
     tasks = load_tasks()
+    if len(tasks) == 0:
+        print("No Tasks available!")
+        return
     for num,task in enumerate(tasks):
-        print()
-        print(f"Task #{num+1}")
-        print("Title:",task["title"])
-        print("Description:",task["description"])
-        print("Status:",task["status"])
+        print(f"\n[{num + 1}] {task['title']}")
+        print(f"    Description: {task['description']}")
+        print(f"    Status: {task['status']}")
 
 def delete_task():
-    removing_task = int(input("Enter removing task number: ")) - 1
     tasks = load_tasks()
+    removing_task = get_task_num(tasks,"Enter deleting task number: ")
     tasks.pop(removing_task)
     save_tasks(tasks)
     print("Task removed!")
 
 def mark_complete():
-    marking_task = int(input("Enter Completing task number: ")) - 1
     tasks = load_tasks()
+    marking_task = get_task_num(tasks,"Enter Completing task number: ")
     tasks[marking_task]["status"] = "Complete"
     save_tasks(tasks)
     print("Task Completed!")
+
+def get_task_num(tasks,question):
+    entered_num = input(question)
+    try:
+        entered_num = int(entered_num)
+    except ValueError:
+        print("Invalid input!")
+        return get_task_num(tasks,question)
+
+    if entered_num > len(tasks) or entered_num <= 0:
+        print("Invalid input!")
+        return get_task_num(tasks,question)
+    else:
+        return entered_num - 1
 
