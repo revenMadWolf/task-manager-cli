@@ -34,29 +34,35 @@ def view_task():
 
 def delete_task():
     tasks = load_tasks()
-    removing_task = get_task_num(tasks,"Enter deleting task number: ")
+    if not tasks:
+        print("No tasks available!")
+        return
+    removing_task = get_input_num(tasks, "Enter deleting task number: ")
     tasks.pop(removing_task)
     save_tasks(tasks)
     print("Task removed!")
 
 def mark_complete():
     tasks = load_tasks()
-    marking_task = get_task_num(tasks,"Enter Completing task number: ")
+    if not tasks:
+        print("No tasks available!")
+        return
+    marking_task = get_input_num(tasks, "Enter Completing task number: ")
     tasks[marking_task]["status"] = "Complete"
     save_tasks(tasks)
     print("Task Completed!")
 
-def get_task_num(tasks,question):
+def get_input_num(tasks, question):
     entered_num = input(question)
     try:
         entered_num = int(entered_num)
     except ValueError:
         print("Invalid input!")
-        return get_task_num(tasks,question)
+        return get_input_num(tasks, question)
 
     if entered_num > len(tasks) or entered_num <= 0:
         print("Invalid input!")
-        return get_task_num(tasks,question)
+        return get_input_num(tasks, question)
     else:
         return entered_num - 1
 
@@ -71,13 +77,43 @@ def search_from_keyword():
             if search_word in item.lower():
                 search_result.append(task)
                 break
-    if len(search_result) > 0:
-        display_task(search_result)
-    else:
+
+    display_task(search_result)
+
+
+
+def filter_func():
+    all_filters = ["Complete","Incomplete"]
+    filtered_list = []
+    tasks = load_tasks()
+    filter_num = get_input_num(all_filters, "Select Filter,\n[1] Complete \n[2] Incomplete\nSelect: ")
+    for task in tasks:
+        if task["status"] == all_filters[filter_num]:
+            filtered_list.append(task)
+    display_task(filtered_list)
+
+def edit_task():
+    tasks = load_tasks()
+    if not tasks:
         print("No tasks available!")
+        return
+    editing_task_num = get_input_num(tasks,"Enter task number for edit: ")
+    print("Keep typing area empty if no change is required")
+    new_title = input("Enter new title: ")
+    new_description = input("Enter new description: ")
+
+    if len(new_title) > 0:
+        tasks[editing_task_num]["title"] = new_title
+    if len(new_description)> 0:
+        tasks[editing_task_num]["description"] = new_description
+    print("Changes saved!")
+    save_tasks(tasks)
 
 def display_task(tasks):
-    for num,task in enumerate(tasks):
-        print(f"\n[{num + 1}] {task['title']}")
-        print(f"    Description: {task['description']}")
-        print(f"    Status: {task['status']}")
+    if tasks:
+        for num,task in enumerate(tasks):
+            print(f"\n[{num + 1}] {task['title']}")
+            print(f"    Description: {task['description']}")
+            print(f"    Status: {task['status']}")
+    else:
+        print("No tasks available!")
