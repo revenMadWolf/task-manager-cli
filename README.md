@@ -55,7 +55,7 @@ Enter task: Study programming
 
 * `main.py` — main program logic
 * `functions.py` - stores custom functions
-* `tasks.txt` — stores tasks data
+* `tasks.json` — stores tasks data
 
 ---
 
