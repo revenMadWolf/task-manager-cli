@@ -1,8 +1,8 @@
 # Task Manager CLI
 
-A simple command-line task manager built in Python.
+A command-line task manager built in Python that allows users to efficiently manage tasks using a simple terminal interface.
 
-This project allows users to manage tasks through a terminal interface, including adding, viewing, and updating tasks. It is designed to demonstrate basic programming concepts such as functions, loops, and file handling.
+This project demonstrates core programming concepts such as file handling, data structures, modular design, and user input validation.
 
 ---
 
@@ -10,9 +10,12 @@ This project allows users to manage tasks through a terminal interface, includin
 
 * Add new tasks
 * View all tasks
+* Edit existing tasks
 * Delete tasks
 * Mark tasks as complete
-* Save tasks to a file
+* Search tasks by keyword
+* Filter tasks by status (Complete / Incomplete)
+* Persistent storage using JSON
 
 ---
 
@@ -40,31 +43,54 @@ This project allows users to manage tasks through a terminal interface, includin
 ## Example Usage
 
 ```
-1. Add Task
-2. View Tasks
-3. Delete Task
-4. Mark Task as Complete
+(1) Add Task
+(2) Edit Task
+(3) View Task
+(4) Delete Task
+(5) Mark Task as Complete
+(6) Search Task
+(7) Filter Task
+(8) View Menu
+(9) Exit
 
-Enter choice: 1
-Enter task: Study programming
+Select an option: 1
+Enter task title: Study Programming
+Enter task description: Practice Python daily
+Task Added!
 ```
 
 ---
 
 ## Project Structure
 
-* `main.py` — main program logic
-* `functions.py` - stores custom functions
-* `tasks.json` — stores tasks data
+* `main.py` — Handles user interaction and menu system
+* `functions.py` — Contains core logic and task operations
+* `tasks.json` — Stores task data persistently
+
+---
+
+## Data Format (JSON)
+
+Tasks are stored in the following format:
+
+```json
+[
+    {
+        "title": "Study Programming",
+        "description": "Practice Python daily",
+        "status": "Incomplete"
+    }
+]
+```
 
 ---
 
 ## Future Improvements
 
-* Add task priorities
-* Implement search functionality
-* Improve user interface
+* Add task priorities (High / Medium / Low)
 * Add due dates for tasks
+* Convert to a graphical user interface (GUI)
+* Refactor into an object-oriented design (OOP)
 
 ---
 
