@@ -25,7 +25,7 @@ This project demonstrates core programming concepts such as file handling, data 
 2. Clone this repository:
 
    ```
-   git clone <your-repository-link>
+   git clone <https://github.com/revenMadWolf/task-manager-cli>
    ```
 3. Navigate to the project folder:
 
